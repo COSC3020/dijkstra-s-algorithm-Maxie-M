@@ -23,3 +23,16 @@ inefficient.
 
 What is the big $\Theta$ complexity of your implementation? Add your
 answer, including your reasoning, to this markdown file.
+
+## Runtime Analysis, Maxie M. 
+- **Time Complexity:** $O(V^2)$ , where $V$ is the number of vertices in the graph
+  - In each iteration sicne we're not using a priority queue, finding the unvisisted node with the smallest distance will be $O(V)$
+  - The distance of the neighbor will be updated for each node
+    - Total for a dense graph is $O(V)$
+
+## Plagiarism Statement: 
+I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.
+
+## Resources: 
+- https://www.codeunderscored.com/dijkstras-algorithm-in-javascript/
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
