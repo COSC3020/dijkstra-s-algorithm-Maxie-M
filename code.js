@@ -1,3 +1,7 @@
+//code.js
+//Maxie Machado 
+// Dijkstra's Algorithm 
+
 function dijkstra(graph, sourceNode) 
 {
     let dist = {};
