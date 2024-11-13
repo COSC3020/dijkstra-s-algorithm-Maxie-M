@@ -3,8 +3,8 @@ on:
 
 jobs:
   test:
-    run-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - users: action/checkout@v3
+      - uses: action/checkout@v3
       - run: npm i jsverify
       - run: node code.test.js
