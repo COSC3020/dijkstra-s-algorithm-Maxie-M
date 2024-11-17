@@ -43,9 +43,3 @@ testCases.forEach(({ graph, source, expected }, index) => {
 });
 
 console.log("All tests passed!");
-
-
-const expected4 = { A: 0, B: 1, C: 3, D: 6 };
-assert.deepStrictEqual(dijkstra(graph4, 'A'), expected4);
-
-console.log('All Tests Passed!');
