@@ -35,3 +35,6 @@ function dijkstra(adjMatrix, sourceNode) {
 
     return dists;
 }
+
+
+module.exports = dijkstra;
