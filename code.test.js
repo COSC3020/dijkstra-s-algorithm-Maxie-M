@@ -4,8 +4,7 @@
 
 const fs = require('fs');
 const assert = require('assert');
-
-eval(fs.readFileSync(code.js) + '');
+const { dijkstra } = require('./code.js');
 
 const graph1 = {
     A: { B: 1, C: 4 },
