@@ -2,39 +2,36 @@
 // Maxie Machado 
 // Dijkstra's Algorithm
 
+function dijkstra(adjMatrix, sourceNode) {
+    const numNodes = adjMatrix.length;
+    const dists = Array(numNodes).fill(Infinity);
+    const visd = Array(numNodes).fill(false);
+    dists[sourceNode] = 0;
 
-function dijkstra(graph, source) 
-{
-    let dists = {};
-    let visd = new Set()
-    const pq = []
+    for (let i = 0; i < numNodes; i++) {
+        let minDist = Infinity;
+        let closestNode = -1;
+        for (let node = 0; node < numNodes; node++) {
+            if (!visd[node] && dists[node] < minDist) {
+                minDist = dists[node];
+                closestNode = node;
+            }
+        }
 
-    for (let node in graph) 
-    {
-        dists[node] = Infinity;
-    }
+        if (closestNode === -1) break;
 
-    dists[source] = 0;
-    pq.push({node: source, distance: 0});
+        visd[closestNode] = true;
 
-    while (pq.length > 0) 
-    {
-        pq.sort((a, b) => a.distance - b.distance);
-        const { node: currentNode, distance: currentDistance } = pq.shift();
-
-        if (visd.has(currentNode)) continue;
-        visd.add(currentNode);
-
-        for (let neighbor in graph[currentNode]) {
-            const edgeWeight = graph[currentNode][neighbor];
-            const newDist = currentDistance + edgeWeight;
-            
-            if (newDist < distance[neighbor]) {
-                dists[neighbor] = newDist;
-                pq.push({ node: neighbor, distance: newDist });
+        for (let neighbor = 0; neighbor < numNodes; neighbor++) {
+            const edgeWeight = adjMatrix[closestNode][neighbor];
+            if (edgeWeight > 0 && !visd[neighbor]) {
+                const newDist = dists[closestNode] + edgeWeight;
+                if (newDist < dists[neighbor]) {
+                    dists[neighbor] = newDist;
+                }
             }
         }
     }
+
     return dists;
 }
-module.exports = { dijkstra };
