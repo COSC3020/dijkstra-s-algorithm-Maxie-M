@@ -1,5 +1,6 @@
+const fs = require('fs');
 const assert = require("assert");
-const dijkstra = require("./code.js");
+eval(fs.readFileSync('code.js') + '');
 
 const testCases = [
     {
