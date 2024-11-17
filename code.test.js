@@ -39,7 +39,7 @@ const graph4 = {
     A: { B: 1 }, 
     B: { C: 2 },
     C: { D: 3 },
-    D: {}<
+    D: {},
 };
 
 const expected4 = { A: 0, B: 1, C: 3, D: 6 };
