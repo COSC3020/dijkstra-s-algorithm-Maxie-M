@@ -1,45 +1,48 @@
-// code.js
-// Maxie Machado 
-// Dijkstra's Algorithm
+const assert = require("assert");
+const dijkstra = require("./code.js");
 
-const fs = require('fs');
-const assert = require('assert');
-const { dijkstra } = require('./code.js');
+const testCases = [
+    {
+        graph: [
+            [0, 2, 5],
+            [2, 0, 1],
+            [5, 1, 0],
+        ],
+        source: 0,
+        expected: [0, 2, 3],
+    },
+    {
+        graph: [
+            [0, 1],
+            [0, 0],
+        ],
+        source: 0,
+        expected: [0, 1],
+    },
+    {
+        graph: [
+            [0, 4, 0, 0, 0, 0, 0, 8, 0],
+            [4, 0, 8, 0, 0, 0, 0, 11, 0],
+            [0, 8, 0, 7, 0, 4, 0, 0, 2],
+            [0, 0, 7, 0, 9, 14, 0, 0, 0],
+            [0, 0, 0, 9, 0, 10, 0, 0, 0],
+            [0, 0, 4, 14, 10, 0, 2, 0, 0],
+            [0, 0, 0, 0, 0, 2, 0, 1, 6],
+            [8, 11, 0, 0, 0, 0, 1, 0, 7],
+            [0, 0, 2, 0, 0, 0, 6, 7, 0],
+        ],
+        source: 0,
+        expected: [0, 4, 12, 19, 21, 11, 9, 8, 14],
+    },
+];
 
-const graph1 = {
-    A: { B: 1, C: 4 },
-    B: { A: 1, C: 2, D: 6 },
-    C: { A: 4, B: 2, D: 3 },
-    D: { B: 6, C: 3 },
-};
+testCases.forEach(({ graph, source, expected }, index) => {
+    const result = dijkstra(graph, source);
+    assert.deepStrictEqual(result, expected, `Test case ${index + 1} failed`);
+});
 
-const expected1 = { A: 0, B: 1, C: 3, D: 6};
-assert.deepStrictEqual(dijkstra(graph1, 'A'), expected1);
+console.log("All tests passed!");
 
-const graph2 = {
-    A : { B: 2 },
-    B: { A: 2, C: 1 },
-    C: { B: 1 },
-};
-
-const expected2 = { A: 0, B: 2, C: 3 };
-assert.deepStrictEqual(dijkstra(graph2, 'A'), expected2);
-
-const graph3 = {
-    0: {1: 2, 2: 5 },
-    1: { 0: 2, 2: 1 },
-    2: { 0: 5, 1: 1},
-};
-
-const expected3 = { 0: 0, 1: 2, 2: 3 };
-assert.deepStrictEqual(dijkstra(graph3, 'A'), expected3);
-
-const graph4 = {
-    A: { B: 1 }, 
-    B: { C: 2 },
-    C: { D: 3 },
-    D: {},
-};
 
 const expected4 = { A: 0, B: 1, C: 3, D: 6 };
 assert.deepStrictEqual(dijkstra(graph4, 'A'), expected4);
