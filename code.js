@@ -25,18 +25,16 @@ function dijkstra(graph, source)
         if (visd.has(currentNode)) continue;
         visd.add(currentNode);
 
-        for (let neighbor in graph[currentNode])
-        {
+        for (let neighbor in graph[currentNode]) {
             const edgeWeight = graph[currentNode][neighbor];
             const newDist = currentDistance + edgeWeight;
             
-            if (newDist < distance[neighbor])
-            {
+            if (newDist < distance[neighbor]) {
                 dists[neighbor] = newDist;
                 pq.push({ node: neighbor, distance: newDist });
             }
         }
     }
     return dists;
-
 }
+module.exports = { dijkstra };
