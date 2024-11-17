@@ -1,42 +1,42 @@
-//code.js
-//Maxie Machado 
-// Dijkstra's Algorithm 
+// code.js
+// Maxie Machado 
+// Dijkstra's Algorithm
 
-function dijkstra(graph, sourceNode) {
-    let dist = {};
-    let vis = new Set();
 
-    for (let node in graph) {
-        dist[node] = Infinity;
+function dijkstra(graph, source) 
+{
+    let dists = {};
+    let visd = new Set()
+    const pq = []
+
+    for (let node in graph) 
+    {
+        dists[node] = Infinity;
     }
-    dist[sourceNode] = 0;
 
-    function getClosestUnvisitedNode() {
-        let minDist = Infinity;
-        let clstNode = null;
+    dists[source] = 0;
+    pq.push({node: source, distance: 0});
 
-        for (let node in dist) {
-            if (!vis.has(node) && dist[node] < minDist) {
-                minDist = dist[node];
-                clstNode = node;
+    while (pq.length > 0) 
+    {
+        pq.sort((a, b) => a.distance - b.distance);
+        const { node: currentNode, distance: currentDistance } = pq.shift();
+
+        if (visd.has(currentNode)) continue;
+        visd.add(currentNode);
+
+        for (let neighbor in graph[currentNode])
+        {
+            const edgeWeight = graph[currentNode][neighbor];
+            const newDist = currentDistance + edgeWeight;
+            
+            if (newDist < distance[neighbor])
+            {
+                dists[neighbor] = newDist;
+                pq.push({ node: neighbor, distance: newDist });
             }
         }
-        return clstNode;
     }
+    return dists;
 
-    let currentNode = getClosestUnvisitedNode();
-
-    while (currentNode !== null) {
-        let currDist = dist[currentNode];
-        vis.add(currentNode);
-
-        for (let neighbor in graph[currentNode]) {
-            if (!vis.has(neighbor)) {
-                let newDist = currDist + graph[currentNode][neighbor];
-                dist[neighbor] = Math.min(dist[neighbor], newDist);
-            }
-        }
-        currentNode = getClosestUnvisitedNode();
-    }
-    return dist;
 }
